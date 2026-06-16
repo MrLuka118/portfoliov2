@@ -1,0 +1,113 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/*
+ * Barvni sistem Luka Photography.
+ * Privzeto temna tema (#0a0a0a), zamolkel champagne/bron akcent (#b8975f ≈ 36 32% 55%).
+ * Vrednosti so v HSL brez hsl() ovoja (shadcn konvencija).
+ */
+@layer base {
+  :root,
+  .dark {
+    --background: 0 0% 4%;            /* #0a0a0a */
+    --foreground: 40 10% 92%;        /* topla bela */
+
+    --card: 0 0% 7%;                 /* #111 */
+    --card-foreground: 40 10% 92%;
+
+    --popover: 0 0% 6%;
+    --popover-foreground: 40 10% 92%;
+
+    --primary: 40 10% 92%;
+    --primary-foreground: 0 0% 4%;
+
+    --secondary: 0 0% 12%;
+    --secondary-foreground: 40 8% 80%;
+
+    --muted: 0 0% 12%;
+    --muted-foreground: 40 6% 58%;
+
+    /* Champagne/bron akcent #b8975f */
+    --accent: 36 36% 55%;
+    --accent-foreground: 0 0% 4%;
+
+    --destructive: 0 62% 45%;
+    --destructive-foreground: 40 10% 92%;
+
+    --border: 40 6% 18%;
+    --input: 40 6% 18%;
+    --ring: 36 36% 55%;
+
+    --radius: 0.4rem;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  html {
+    scroll-behavior: smooth;
+    /* Odmik za sticky navigacijo pri anchor skokih na kategorije. */
+    scroll-padding-top: 5rem;
+  }
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+
+  /* Reduciraj gibanje za uporabnike, ki to želijo (dostopnost). */
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+
+  /* Viden fokus za tipkovnično navigacijo. */
+  :focus-visible {
+    @apply outline-none ring-2 ring-ring ring-offset-2 ring-offset-background;
+  }
+}
+
+@layer utilities {
+  /* Velik letter-spacing za caps oznake. */
+  .tracking-label {
+    letter-spacing: 0.25em;
+  }
+  /* Tanka linija/separator v champagne tonu. */
+  .accent-rule {
+    @apply h-px w-12 bg-accent/70;
+  }
+  /* Skrij drsnik pri horizontalnem meniju kategorij. */
+  .scrollbar-none {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  .scrollbar-none::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+/* Diskreten temni drsnik. */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+::-webkit-scrollbar-track {
+  background: hsl(var(--background));
+}
+::-webkit-scrollbar-thumb {
+  background: hsl(0 0% 18%);
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: hsl(36 20% 35%);
+}

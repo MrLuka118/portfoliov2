@@ -1,0 +1,57 @@
+{
+  "nav": {
+    "home": "Domov",
+    "about": "O meni",
+    "contact": "Kontakt",
+    "menu": "Meni",
+    "close": "Zapri",
+    "language": "Jezik"
+  },
+  "hero": {
+    "subtitle": "FOTOGRAFIJA · VIDEOGRAFIJA",
+    "headingBefore": "Capturing",
+    "headingEmphasis": "moments",
+    "headingAfter": "that matter",
+    "description": "Luka Photography — vizualne zgodbe, ujete z občutkom za svetlobo, detajl in odločilni trenutek.",
+    "ctaPrimary": "Oglej si portfolio",
+    "ctaSecondary": "Kontakt",
+    "scroll": "Pomakni se navzdol"
+  },
+  "gallery": {
+    "title": "Portfolio",
+    "layoutMasonry": "Masonry",
+    "layoutStacked": "Celozaslonsko",
+    "layoutGrid": "Mreža",
+    "empty": "V tej kategoriji še ni slik.",
+    "emptyAll": "Galerija je trenutno prazna. Slike dodaj v admin panelu.",
+    "viewLayout": "Spremeni postavitev",
+    "close": "Zapri",
+    "next": "Naprej",
+    "prev": "Nazaj",
+    "imageOf": "Slika {current} od {total}"
+  },
+  "about": {
+    "label": "Moje delo",
+    "heading": "O meni",
+    "name": "Luka Božič",
+    "p1": "Sem fotograf iz Slovenije s strastjo do zajemanja resničnih trenutkov in njihovega preoblikovanja v vizualno zgodbo. Moje delo združuje naravno svetlobo, vzdušje in kompozicijo v slike, ki so hkrati avtentične in cinematične.",
+    "p2": "Privlači me fotografija z emocijo in globino – naj gre za dogodke, koncerte, portrete ali vsakdanje prizore, ki nosijo tiho zgodbo. Opazujem, preden sprožim; iščem majhne detajle, izraze in trenutke, ki pogosto ostanejo neopaženi.",
+    "p3": "Fotografija je zame postala več kot le kreativni hobi – je način gledanja in razumevanja sveta. Moj cilj je preprost: ustvariti slike, ki nekaj sprožijo in ohranijo trenutek natanko tak, kot je bil.",
+    "location": "Deluje v Sloveniji",
+    "cta": "Stopi v stik"
+  },
+  "contact": {
+    "heading": "Kontakt",
+    "intro": "Za projekte, rezervacije fotografskih sej ali zgolj prijazen pozdrav – z veseljem se slišimo prek katerega koli spodnjega kanala.",
+    "email": "E-pošta",
+    "instagram": "Instagram"
+  },
+  "footer": {
+    "rights": "Vse pravice pridržane.",
+    "contact": "Kontakt"
+  },
+  "common": {
+    "loading": "Nalaganje …",
+    "error": "Prišlo je do napake."
+  }
+}

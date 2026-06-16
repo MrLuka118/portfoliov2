@@ -1,0 +1,57 @@
+{
+  "nav": {
+    "home": "Home",
+    "about": "About",
+    "contact": "Contact",
+    "menu": "Menu",
+    "close": "Close",
+    "language": "Language"
+  },
+  "hero": {
+    "subtitle": "PHOTOGRAPHY · VIDEOGRAPHY",
+    "headingBefore": "Capturing",
+    "headingEmphasis": "moments",
+    "headingAfter": "that matter",
+    "description": "Luka Photography — visual stories captured with an eye for light, detail and the decisive moment.",
+    "ctaPrimary": "View portfolio",
+    "ctaSecondary": "Contact",
+    "scroll": "Scroll down"
+  },
+  "gallery": {
+    "title": "Portfolio",
+    "layoutMasonry": "Masonry",
+    "layoutStacked": "Fullscreen",
+    "layoutGrid": "Grid",
+    "empty": "No images in this category yet.",
+    "emptyAll": "The gallery is currently empty. Add images in the admin panel.",
+    "viewLayout": "Change layout",
+    "close": "Close",
+    "next": "Next",
+    "prev": "Previous",
+    "imageOf": "Image {current} of {total}"
+  },
+  "about": {
+    "label": "The Work",
+    "heading": "About",
+    "name": "Luka Božič",
+    "p1": "I'm a photographer from Slovenia with a passion for capturing real moments and turning them into a visual story. My work blends natural light, atmosphere and composition into images that feel both authentic and cinematic.",
+    "p2": "I'm drawn to photography with emotion and depth – whether it's events, concerts, portraits or everyday scenes that carry a quiet story. I observe before I press the shutter, looking for the small details, expressions and moments that often go unnoticed.",
+    "p3": "Photography has become more than a creative hobby for me – it's a way of seeing and understanding the world. My goal is simple: to create images that stir something and preserve a moment exactly as it was.",
+    "location": "Based in Slovenia",
+    "cta": "Get in Touch"
+  },
+  "contact": {
+    "heading": "Contact",
+    "intro": "For projects, session bookings or just to say hello – I'd love to hear from you through any of the channels below.",
+    "email": "Email",
+    "instagram": "Instagram"
+  },
+  "footer": {
+    "rights": "All rights reserved.",
+    "contact": "Contact"
+  },
+  "common": {
+    "loading": "Loading …",
+    "error": "Something went wrong."
+  }
+}

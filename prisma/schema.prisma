@@ -1,0 +1,65 @@
+// Prisma shema za Luka Photography (Postgres / Neon).
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  // Direktna povezava za migracije (Neon: host brez "-pooler").
+  directUrl = env("DIRECT_URL")
+}
+
+/// Admin uporabniki.
+model User {
+  id           String   @id @default(cuid())
+  username     String   @unique
+  passwordHash String   @map("password_hash")
+  createdAt    DateTime @default(now()) @map("created_at")
+
+  @@map("users")
+}
+
+/// Kategorije portfolia (z naslovi v treh jezikih).
+model Category {
+  id       String  @id @default(cuid())
+  /// URL-prijazna oznaka, uporabljena kot anchor (#poroke, #koncerti ...).
+  slug     String  @unique
+  titleSl  String  @map("title_sl")
+  titleHr  String  @map("title_hr")
+  titleEn  String  @map("title_en")
+  /// Vrstni red prikaza v navigaciji.
+  position Int     @default(0)
+  images   Image[]
+
+  createdAt DateTime @default(now()) @map("created_at")
+
+  @@map("categories")
+}
+
+/// Splošne nastavitve strani (ključ → vrednost), npr. URL naslovne fotografije.
+/// Omogoča urejanje vsebine prek admina brez spreminjanja kode.
+model Setting {
+  key   String @id
+  value String
+
+  @@map("settings")
+}
+
+/// Slike (naslovi v treh jezikih + URL na cloud storage).
+model Image {
+  id         String   @id @default(cuid())
+  titleSl    String   @map("title_sl")
+  titleHr    String   @map("title_hr")
+  titleEn    String   @map("title_en")
+  imageUrl   String   @map("image_url")
+  width      Int?
+  height     Int?
+  categoryId String   @map("category_id")
+  category   Category @relation(fields: [categoryId], references: [id], onDelete: Cascade)
+  createdAt  DateTime @default(now()) @map("created_at")
+
+  @@index([categoryId])
+  @@map("images")
+}

@@ -1,0 +1,57 @@
+{
+  "nav": {
+    "home": "Početna",
+    "about": "O meni",
+    "contact": "Kontakt",
+    "menu": "Izbornik",
+    "close": "Zatvori",
+    "language": "Jezik"
+  },
+  "hero": {
+    "subtitle": "FOTOGRAFIJA · VIDEOGRAFIJA",
+    "headingBefore": "Capturing",
+    "headingEmphasis": "moments",
+    "headingAfter": "that matter",
+    "description": "Luka Photography — vizualne priče, uhvaćene s osjećajem za svjetlo, detalj i odlučujući trenutak.",
+    "ctaPrimary": "Pogledaj portfolio",
+    "ctaSecondary": "Kontakt",
+    "scroll": "Pomakni se dolje"
+  },
+  "gallery": {
+    "title": "Portfolio",
+    "layoutMasonry": "Masonry",
+    "layoutStacked": "Cijeli zaslon",
+    "layoutGrid": "Mreža",
+    "empty": "U ovoj kategoriji još nema slika.",
+    "emptyAll": "Galerija je trenutno prazna. Slike dodaj u admin panelu.",
+    "viewLayout": "Promijeni raspored",
+    "close": "Zatvori",
+    "next": "Sljedeća",
+    "prev": "Prethodna",
+    "imageOf": "Slika {current} od {total}"
+  },
+  "about": {
+    "label": "Moj rad",
+    "heading": "O meni",
+    "name": "Luka Božič",
+    "p1": "Fotograf sam iz Slovenije sa strašću za hvatanje stvarnih trenutaka i njihovo pretvaranje u vizualnu priču. Moj rad spaja prirodno svjetlo, atmosferu i kompoziciju u fotografije koje su istovremeno autentične i filmske.",
+    "p2": "Privlači me fotografija s emocijom i dubinom – bilo da se radi o događajima, koncertima, portretima ili svakodnevnim prizorima koji nose tihu priču. Promatram prije nego okinem; tražim male detalje, izraze i trenutke koji često ostanu neprimijećeni.",
+    "p3": "Fotografija je za mene postala više od kreativnog hobija – način gledanja i razumijevanja svijeta. Moj cilj je jednostavan: stvoriti fotografije koje nešto pokrenu i sačuvaju trenutak točno onakvim kakav je bio.",
+    "location": "Sa sjedištem u Sloveniji",
+    "cta": "Javi se"
+  },
+  "contact": {
+    "heading": "Kontakt",
+    "intro": "Za projekte, rezervacije fotografskih termina ili samo prijateljski pozdrav – rado ću se čuti s vama putem bilo kojeg kanala u nastavku.",
+    "email": "E-pošta",
+    "instagram": "Instagram"
+  },
+  "footer": {
+    "rights": "Sva prava pridržana.",
+    "contact": "Kontakt"
+  },
+  "common": {
+    "loading": "Učitavanje …",
+    "error": "Došlo je do pogreške."
+  }
+}
