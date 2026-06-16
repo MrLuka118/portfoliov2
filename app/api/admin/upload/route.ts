@@ -85,8 +85,10 @@ export async function POST(req: Request) {
     return NextResponse.json({ image }, { status: 201 });
   } catch (error) {
     console.error("POST /api/admin/upload:", error);
+    // Začasno: vrni dejansko sporočilo napake za lažjo diagnozo.
+    const detail = error instanceof Error ? error.message : String(error);
     return NextResponse.json(
-      { error: "Napaka pri nalaganju slike." },
+      { error: `Napaka pri nalaganju slike: ${detail}` },
       { status: 500 }
     );
   }

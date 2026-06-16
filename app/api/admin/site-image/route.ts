@@ -69,8 +69,9 @@ export async function POST(req: Request) {
     return NextResponse.json({ url: blob.url });
   } catch (error) {
     console.error("POST /api/admin/site-image:", error);
+    const detail = error instanceof Error ? error.message : String(error);
     return NextResponse.json(
-      { error: "Napaka pri nalaganju slike." },
+      { error: `Napaka pri nalaganju slike: ${detail}` },
       { status: 500 }
     );
   }
