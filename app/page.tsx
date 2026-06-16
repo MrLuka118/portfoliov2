@@ -1,4 +1,4 @@
-import { getCategoriesWithImages, getHeroImage } from "@/lib/data";
+import { getCategoriesWithImages, getHeroImage, getAboutImage } from "@/lib/data";
 import { SiteHeader } from "@/components/site-header";
 import { HeroSection } from "@/components/hero-section";
 import { Portfolio } from "@/components/gallery/portfolio";
@@ -9,9 +9,10 @@ import { ContactSection } from "@/components/contact-section";
 export const dynamic = "force-dynamic";
 
 export default async function HomePage() {
-  const [categoriesWithImages, heroImage] = await Promise.all([
+  const [categoriesWithImages, heroImage, aboutImage] = await Promise.all([
     getCategoriesWithImages(),
     getHeroImage(),
+    getAboutImage(),
   ]);
 
   return (
@@ -20,7 +21,7 @@ export default async function HomePage() {
       <SiteHeader categories={categoriesWithImages} />
       <HeroSection categories={categoriesWithImages} heroImage={heroImage} />
       <Portfolio categories={categoriesWithImages} />
-      <AboutSection />
+      <AboutSection aboutImage={aboutImage} />
       <ContactSection />
     </main>
   );

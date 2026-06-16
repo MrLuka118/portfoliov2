@@ -12,12 +12,9 @@ import { Button } from "@/components/ui/button";
  * Desktop: dvostolpčna postavitev (slika | besedilo).
  * Mobile: slika nad besedilom.
  *
- * Portret zamenjaj prek `ABOUT_IMAGE` (ali kasneje prek admina, če želiš).
+ * Portret (`aboutImage`) ureja admin prek spletne strani (zavihek »Slike strani«).
  */
-const ABOUT_IMAGE =
-  "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=1200&q=80";
-
-export function AboutSection() {
+export function AboutSection({ aboutImage }: { aboutImage: string }) {
   const { t } = useLanguage();
 
   return (
@@ -27,7 +24,7 @@ export function AboutSection() {
         <Reveal>
           <div className="relative aspect-[4/5] w-full overflow-hidden rounded-sm bg-card">
             <Image
-              src={ABOUT_IMAGE}
+              src={aboutImage}
               alt={t("about.name")}
               fill
               sizes="(max-width: 768px) 100vw, 50vw"

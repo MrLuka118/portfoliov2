@@ -4,11 +4,22 @@ import type { CategoryDTO, CategoryWithImages, ImageDTO } from "@/types";
 /** Ključi nastavitev v tabeli `settings`. */
 export const SETTING_KEYS = {
   heroImage: "heroImageUrl",
+  aboutImage: "aboutImageUrl",
 } as const;
+
+/** Dovoljeni ključi za nalaganje slik strani (varnostni allowlist). */
+export const IMAGE_SETTING_KEYS: Record<string, string> = {
+  [SETTING_KEYS.heroImage]: "hero",
+  [SETTING_KEYS.aboutImage]: "about",
+};
 
 /** Privzeta naslovna fotografija, dokler je ni admin zamenjal. */
 export const HERO_FALLBACK =
   "https://images.unsplash.com/photo-1519681393784-d120267933ba?auto=format&fit=crop&w=2400&q=80";
+
+/** Privzeti portret v About sekciji, dokler ga admin ne zamenja. */
+export const ABOUT_FALLBACK =
+  "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=1200&q=80";
 
 /** Prebere vrednost nastavitve (ali null). */
 export async function getSetting(key: string): Promise<string | null> {
@@ -19,6 +30,11 @@ export async function getSetting(key: string): Promise<string | null> {
 /** URL naslovne fotografije (z padcem na privzeto). */
 export async function getHeroImage(): Promise<string> {
   return (await getSetting(SETTING_KEYS.heroImage)) ?? HERO_FALLBACK;
+}
+
+/** URL portreta v About sekciji (z padcem na privzeto). */
+export async function getAboutImage(): Promise<string> {
+  return (await getSetting(SETTING_KEYS.aboutImage)) ?? ABOUT_FALLBACK;
 }
 
 /** Pretvori Prisma Image v serializabilen DTO. */
