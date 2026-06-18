@@ -101,9 +101,10 @@ export function SiteHeader({ categories }: { categories: CategoryDTO[] }) {
           <Logo />
         </a>
 
-        {/* Namizna navigacija */}
+        {/* Namizna navigacija – samo statične sekcije (O meni, Kontakt);
+            kategorije so v ločenem category-baru spodaj, da ni podvajanja. */}
         <ul className="hidden items-center gap-7 lg:flex">
-          {navItems.map((item) => (
+          {staticLinks.map((item) => (
             <li key={item.slug}>
               <a
                 href={`#${item.slug}`}
