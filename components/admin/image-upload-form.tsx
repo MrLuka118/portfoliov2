@@ -4,6 +4,7 @@ import * as React from "react";
 import { useRouter } from "next/navigation";
 import { toast } from "sonner";
 import { Loader2, UploadCloud } from "lucide-react";
+import { upload } from "@vercel/blob/client";
 
 import type { CategoryDTO } from "@/types";
 import { Button } from "@/components/ui/button";
@@ -68,21 +69,34 @@ export function ImageUploadForm({ categories }: { categories: CategoryDTO[] }) {
     setLoading(true);
     try {
       const { width, height } = await readDimensions(file);
-      const form = new FormData();
-      form.append("file", file);
-      form.append("title_sl", titleSl);
-      form.append("title_hr", titleHr);
-      form.append("title_en", titleEn);
-      form.append("category_id", categoryId);
-      form.append("width", String(width));
-      form.append("height", String(height));
+      const category = categories.find((c) => c.id === categoryId);
+      const pathname = `portfolio/${category?.slug ?? "misc"}/${file.name}`;
 
-      const res = await fetch("/api/admin/upload", {
-        method: "POST",
-        body: form,
+      // 1) Direkten upload v Vercel Blob (zaobide ~4.5 MB omejitev serverless funkcij).
+      const blob = await upload(pathname, file, {
+        access: "public",
+        handleUploadUrl: "/api/admin/upload",
+        contentType: file.type,
       });
-      const data = await res.json();
-      if (!res.ok) throw new Error(data.error ?? "Napaka pri nalaganju.");
+
+      // 2) Shrani metapodatke v bazo (majhen JSON).
+      const res = await fetch("/api/admin/images", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          imageUrl: blob.url,
+          title_sl: titleSl,
+          title_hr: titleHr,
+          title_en: titleEn,
+          category_id: categoryId,
+          width,
+          height,
+        }),
+      });
+      if (!res.ok) {
+        const data = await res.json().catch(() => null);
+        throw new Error(data?.error ?? `Napaka pri shranjevanju (${res.status}).`);
+      }
 
       toast.success("Slika naložena.");
       reset();
