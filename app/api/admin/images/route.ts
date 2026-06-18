@@ -35,9 +35,10 @@ export async function POST(req: Request) {
     if (!imageUrl) {
       return NextResponse.json({ error: "Manjka URL slike." }, { status: 400 });
     }
-    if (!titleSl || !titleHr || !titleEn || !categoryId) {
+    // Naslovi so neobvezni (shranijo se lahko kot prazen niz); kategorija je obvezna.
+    if (!categoryId) {
       return NextResponse.json(
-        { error: "Naslovi (3 jeziki) in kategorija so obvezni." },
+        { error: "Kategorija je obvezna." },
         { status: 400 }
       );
     }

@@ -2,7 +2,14 @@
 
 import * as React from "react";
 import { signOut } from "next-auth/react";
-import { Image as ImageIcon, Images, LayoutList, LogOut, Upload } from "lucide-react";
+import {
+  Image as ImageIcon,
+  Images,
+  LayoutList,
+  LogOut,
+  ShieldCheck,
+  Upload,
+} from "lucide-react";
 
 import { cn } from "@/lib/utils";
 import { SETTING_KEYS } from "@/lib/data";
@@ -12,14 +19,16 @@ import { ImageUploadForm } from "@/components/admin/image-upload-form";
 import { ImageList } from "@/components/admin/image-list";
 import { CategoryManager } from "@/components/admin/category-manager";
 import { SiteImageManager } from "@/components/admin/site-image-manager";
+import { TwoFactorManager } from "@/components/admin/two-factor-manager";
 
-type Tab = "upload" | "images" | "categories" | "site";
+type Tab = "upload" | "images" | "categories" | "site" | "security";
 
 const TABS: { id: Tab; label: string; icon: typeof Upload }[] = [
   { id: "upload", label: "Nalaganje", icon: Upload },
   { id: "images", label: "Slike", icon: Images },
   { id: "categories", label: "Kategorije", icon: LayoutList },
   { id: "site", label: "Slike strani", icon: ImageIcon },
+  { id: "security", label: "Varnost", icon: ShieldCheck },
 ];
 
 /** Glavna admin plošča z zavihki za nalaganje, slike in kategorije. */
@@ -28,11 +37,13 @@ export function AdminDashboard({
   initialImages,
   heroImage,
   aboutImage,
+  twoFactorEnabled,
 }: {
   initialCategories: CategoryDTO[];
   initialImages: ImageDTO[];
   heroImage: string;
   aboutImage: string;
+  twoFactorEnabled: boolean;
 }) {
   const [tab, setTab] = React.useState<Tab>("upload");
 
@@ -105,6 +116,7 @@ export function AdminDashboard({
           />
         </div>
       )}
+      {tab === "security" && <TwoFactorManager enabled={twoFactorEnabled} />}
     </div>
   );
 }

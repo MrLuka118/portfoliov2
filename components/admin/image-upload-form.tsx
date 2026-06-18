@@ -157,7 +157,6 @@ export function ImageUploadForm({ categories }: { categories: CategoryDTO[] }) {
             id="title_sl"
             value={titleSl}
             onChange={(e) => setTitleSl(e.target.value)}
-            required
           />
         </div>
         <div className="space-y-2">
@@ -166,7 +165,6 @@ export function ImageUploadForm({ categories }: { categories: CategoryDTO[] }) {
             id="title_hr"
             value={titleHr}
             onChange={(e) => setTitleHr(e.target.value)}
-            required
           />
         </div>
         <div className="space-y-2">
@@ -175,7 +173,6 @@ export function ImageUploadForm({ categories }: { categories: CategoryDTO[] }) {
             id="title_en"
             value={titleEn}
             onChange={(e) => setTitleEn(e.target.value)}
-            required
           />
         </div>
         <div className="space-y-2">

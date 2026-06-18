@@ -4,28 +4,41 @@ import CredentialsProvider from "next-auth/providers/credentials";
 import bcrypt from "bcryptjs";
 
 import { prisma } from "@/lib/prisma";
+import { verifyTotp } from "@/lib/totp";
+
+/** Posebna oznaka napake, ki jo prijavni obrazec prepozna (manjka/napačna 2FA koda). */
+export const TOTP_REQUIRED = "TOTP_REQUIRED";
+
+/** Trajanje seje (30 dni), da ostaneš prijavljen in ti ni treba vsakič login. */
+const SESSION_MAX_AGE = 30 * 24 * 60 * 60;
 
 /**
- * NextAuth konfiguracija – prijava z uporabniškim imenom in geslom (bcrypt).
- * Seje so JWT (brez dodatne tabele).
+ * NextAuth konfiguracija. Dva načina prijave:
+ *  1) "credentials" – e-pošta + geslo (bcrypt) + obvezna TOTP 2FA koda,
+ *     če ima uporabnik vklopljeno dvofaktorsko avtentikacijo.
+ *  2) "qr" – prijava prek QR kode: zaupanja vredna naprava (telefon) odobri
+ *     zahtevo, računalnik pa unovči enkratni token (brez tipkanja gesla).
+ * Seje so JWT (brez dodatne tabele) in trajajo 30 dni.
  */
 export const authOptions: NextAuthOptions = {
-  session: { strategy: "jwt" },
+  session: { strategy: "jwt", maxAge: SESSION_MAX_AGE },
   pages: {
     signIn: "/admin/login",
   },
   providers: [
     CredentialsProvider({
+      id: "credentials",
       name: "Credentials",
       credentials: {
-        username: { label: "Uporabniško ime", type: "text" },
+        email: { label: "E-pošta", type: "email" },
         password: { label: "Geslo", type: "password" },
+        totp: { label: "2FA koda", type: "text" },
       },
       async authorize(credentials) {
-        if (!credentials?.username || !credentials?.password) return null;
+        if (!credentials?.email || !credentials?.password) return null;
 
         const user = await prisma.user.findUnique({
-          where: { username: credentials.username },
+          where: { email: credentials.email.trim().toLowerCase() },
         });
         if (!user) return null;
 
@@ -35,7 +48,57 @@ export const authOptions: NextAuthOptions = {
         );
         if (!valid) return null;
 
-        return { id: user.id, name: user.username };
+        // Drugi faktor: če ima uporabnik vklopljen TOTP, je koda obvezna.
+        if (user.totpSecret) {
+          const code = credentials.totp?.trim();
+          if (!code) {
+            // Sporoči obrazcu, naj prikaže polje za 2FA kodo.
+            throw new Error(TOTP_REQUIRED);
+          }
+          if (!verifyTotp(user.totpSecret, code, user.email ?? undefined)) {
+            return null;
+          }
+        }
+
+        return { id: user.id, name: user.username, email: user.email };
+      },
+    }),
+    CredentialsProvider({
+      id: "qr",
+      name: "QR",
+      credentials: {
+        token: { label: "Token", type: "text" },
+      },
+      async authorize(credentials) {
+        const token = credentials?.token?.trim();
+        if (!token) return null;
+
+        const reqRow = await prisma.loginRequest.findUnique({
+          where: { token },
+        });
+        // Veljaven mora biti: odobren, neunovčen, nepotečen in vezan na uporabnika.
+        if (
+          !reqRow ||
+          !reqRow.approved ||
+          reqRow.consumed ||
+          !reqRow.userId ||
+          reqRow.expiresAt < new Date()
+        ) {
+          return null;
+        }
+
+        const user = await prisma.user.findUnique({
+          where: { id: reqRow.userId },
+        });
+        if (!user) return null;
+
+        // Enkratna uporaba: takoj označi kot unovčeno.
+        await prisma.loginRequest.update({
+          where: { id: reqRow.id },
+          data: { consumed: true },
+        });
+
+        return { id: user.id, name: user.username, email: user.email };
       },
     }),
   ],

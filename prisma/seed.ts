@@ -77,15 +77,20 @@ const CATEGORIES = [
 async function main() {
   // --- Admin uporabnik ---
   const username = process.env.SEED_ADMIN_USERNAME ?? "admin";
+  const email = (process.env.SEED_ADMIN_EMAIL ?? "admin@example.com")
+    .trim()
+    .toLowerCase();
   const password = process.env.SEED_ADMIN_PASSWORD ?? "admin1234";
   const passwordHash = await bcrypt.hash(password, 10);
 
+  // Upsert po uporabniškem imenu (stabilen ključ tudi za obstoječe baze);
+  // e-pošta je primarni identifikator za prijavo.
   await prisma.user.upsert({
     where: { username },
-    update: { passwordHash },
-    create: { username, passwordHash },
+    update: { email, passwordHash },
+    create: { username, email, passwordHash },
   });
-  console.log(`✓ Admin uporabnik: ${username}`);
+  console.log(`✓ Admin uporabnik: ${email}`);
 
   // --- Kategorije + vzorčne slike ---
   for (const cat of CATEGORIES) {

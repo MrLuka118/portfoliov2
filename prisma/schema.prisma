@@ -15,10 +15,28 @@ datasource db {
 model User {
   id           String   @id @default(cuid())
   username     String   @unique
+  email        String?  @unique
   passwordHash String   @map("password_hash")
+  // Skrivnost za TOTP 2FA (base32). Null = 2FA še ni vklopljen.
+  totpSecret   String?  @map("totp_secret")
   createdAt    DateTime @default(now()) @map("created_at")
 
   @@map("users")
+}
+
+/// Zahteve za prijavo prek QR kode (potrditev z zaupanja vredne naprave).
+/// Računalnik ustvari zahtevo in pokaže QR; telefon jo odobri; računalnik
+/// nato unovči token in dobi sejo. Tokeni so kratkoživi in enkratni.
+model LoginRequest {
+  id        String   @id @default(cuid())
+  token     String   @unique
+  approved  Boolean  @default(false)
+  consumed  Boolean  @default(false)
+  userId    String?  @map("user_id")
+  createdAt DateTime @default(now()) @map("created_at")
+  expiresAt DateTime @map("expires_at")
+
+  @@map("login_requests")
 }
 
 /// Kategorije portfolia (z naslovi v treh jezikih).
