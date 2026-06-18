@@ -8,11 +8,8 @@
     "language": "Language"
   },
   "hero": {
-    "subtitle": "PHOTOGRAPHY · VIDEOGRAPHY",
-    "headingBefore": "Capturing",
-    "headingEmphasis": "moments",
-    "headingAfter": "that matter",
-    "description": "Luka Photography — visual stories captured with an eye for light, detail and the decisive moment.",
+    "subtitle": "PHOTOGRAPHY",
+    "heading": "I'm Luka, a photographer from Slovenia. Through my camera I create *memories* that outlast the moment itself.",
     "ctaPrimary": "View portfolio",
     "ctaSecondary": "Contact",
     "scroll": "Scroll down"
@@ -34,9 +31,9 @@
     "label": "The Work",
     "heading": "About",
     "name": "Luka Božič",
-    "p1": "I'm a photographer from Slovenia with a passion for capturing real moments and turning them into a visual story. My work blends natural light, atmosphere and composition into images that feel both authentic and cinematic.",
-    "p2": "I'm drawn to photography with emotion and depth – whether it's events, concerts, portraits or everyday scenes that carry a quiet story. I observe before I press the shutter, looking for the small details, expressions and moments that often go unnoticed.",
-    "p3": "Photography has become more than a creative hobby for me – it's a way of seeing and understanding the world. My goal is simple: to create images that stir something and preserve a moment exactly as it was.",
+    "p1": "I am Luka Božič, and my passion is photography, through which I strive to capture authentic moments and weave them into a story. In my portfolio, you will find a wide variety of projects – from landscapes, concerts, and events to automotive photography. In short, I pour my heart into photography.",
+    "p2": "With every press of the shutter, I try to capture emotion and depth—whether I am shooting events, concerts, portraits, or everyday scenes that carry a silent narrative. Before I take a shot, I observe; I look for those subtle details, expressions, and fleeting moments that often go unnoticed.",
+    "p3": "For me, photography is more than just a hobby; it is my passion and the way I see the world. My goal is simple: to create photos from my unique perspective that preserve a captured moment forever.",
     "location": "Based in Slovenia",
     "cta": "Get in Touch"
   },

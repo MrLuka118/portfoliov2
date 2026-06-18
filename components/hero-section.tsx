@@ -35,6 +35,12 @@ export function HeroSection({
 }) {
   const { t, locale } = useLanguage();
 
+  // Naslov je en sam prevedljiv niz s poudarjenim delom med *zvezdicama*,
+  // npr. "Ujemam *trenutke*, ki štejejo". Tako so ločila (vejice) pravilna
+  // v vseh jezikih, brez vsiljenih presledkov okoli poudarka.
+  const [headingBefore, headingEmphasis = "", headingAfter = ""] =
+    t("hero.heading").split("*");
+
   // Smooth scroll do sekcije kategorije (brez nove strani).
   const handleNavClick = (
     e: React.MouseEvent<HTMLAnchorElement>,
@@ -87,22 +93,12 @@ export function HeroSection({
             initial="hidden"
             animate="visible"
             variants={fadeUp}
-            className="font-serif text-5xl font-light leading-[1.05] text-foreground sm:text-6xl md:text-7xl"
+            className="font-serif text-3xl font-light leading-[1.12] text-foreground sm:text-4xl md:text-5xl"
           >
-            {t("hero.headingBefore")}{" "}
-            <span className="italic text-accent">{t("hero.headingEmphasis")}</span>{" "}
-            {t("hero.headingAfter")}
+            {headingBefore}
+            <span className="italic text-accent">{headingEmphasis}</span>
+            {headingAfter}
           </motion.h1>
-
-          <motion.p
-            custom={2}
-            initial="hidden"
-            animate="visible"
-            variants={fadeUp}
-            className="mt-7 max-w-xl text-base leading-relaxed text-muted-foreground sm:text-lg"
-          >
-            {t("hero.description")}
-          </motion.p>
 
           <motion.div
             custom={3}

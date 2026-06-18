@@ -8,11 +8,8 @@
     "language": "Jezik"
   },
   "hero": {
-    "subtitle": "FOTOGRAFIJA · VIDEOGRAFIJA",
-    "headingBefore": "Capturing",
-    "headingEmphasis": "moments",
-    "headingAfter": "that matter",
-    "description": "Luka Photography — vizualne priče, uhvaćene s osjećajem za svjetlo, detalj i odlučujući trenutak.",
+    "subtitle": "FOTOGRAFIJA",
+    "heading": "Ja sam Luka, fotograf iz Slovenije. Kroz kameru stvaram *uspomene* koje traju dulje od samog trenutka.",
     "ctaPrimary": "Pogledaj portfolio",
     "ctaSecondary": "Kontakt",
     "scroll": "Pomakni se dolje"
@@ -34,9 +31,9 @@
     "label": "Moj rad",
     "heading": "O meni",
     "name": "Luka Božič",
-    "p1": "Fotograf sam iz Slovenije sa strašću za hvatanje stvarnih trenutaka i njihovo pretvaranje u vizualnu priču. Moj rad spaja prirodno svjetlo, atmosferu i kompoziciju u fotografije koje su istovremeno autentične i filmske.",
-    "p2": "Privlači me fotografija s emocijom i dubinom – bilo da se radi o događajima, koncertima, portretima ili svakodnevnim prizorima koji nose tihu priču. Promatram prije nego okinem; tražim male detalje, izraze i trenutke koji često ostanu neprimijećeni.",
-    "p3": "Fotografija je za mene postala više od kreativnog hobija – način gledanja i razumijevanja svijeta. Moj cilj je jednostavan: stvoriti fotografije koje nešto pokrenu i sačuvaju trenutak točno onakvim kakav je bio.",
+    "p1": "Ja sam Luka Božič i moja strast je fotografija, kojom pokušavam uhvatiti stvarne trenutke i pretvoriti ih u priču. Među mojim radovima možete pronaći najraznovrsnije projekte – od pejzaža, koncerata i događaja do automobila. Ukratko, cijelim se srcem predajem fotografiji.",
+    "p2": "Sa svakim pritiskom na okidač pokušavam uhvatiti emocije i dubinu – bilo da se radi o događajima, koncertima, portretima ili svakodnevnim prizorima koji u sebi nose tihu priču. Prije nego što okinem, promatram; tražim one male detalje, izraze i prolazne trenutke koji često ostanu neprimijećeni.",
+    "p3": "Fotografija je za mene više od samog hobija; ona je moja strast i moj pogled na svijet. Moj cilj je jednostavan: stvoriti fotke iz svoje perspektive koje uhvaćeni trenutak čuvaju zauvijek.",
     "location": "Sa sjedištem u Sloveniji",
     "cta": "Javi se"
   },
